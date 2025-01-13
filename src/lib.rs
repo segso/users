@@ -1,4 +1,5 @@
 mod cli;
+pub mod command;
 mod data;
 mod user;
 
