@@ -1,5 +1,10 @@
-use clap::Parser;
+use std::process;
+
+use user_registry::run;
 
 fn main() {
-    user_registry::App::parse();
+    if let Err(err) = run() {
+        eprintln!("{err}");
+        process::exit(1);
+    }
 }

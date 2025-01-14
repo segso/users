@@ -46,7 +46,7 @@ pub struct App {
     pub data: Option<PathBuf>,
 
     #[command(subcommand)]
-    command: Command,
+    pub command: Command,
 }
 
 impl App {
