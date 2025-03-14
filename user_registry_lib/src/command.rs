@@ -23,7 +23,7 @@ use crate::User;
 ///
 /// # Examples
 /// ```rust
-/// # use user_registry::{command::add, User};
+/// # use user_registry_lib::{command::add, User};
 /// fn add_user() {
 ///     let user = User {
 ///         first_name: "John".to_string(),
@@ -54,7 +54,7 @@ pub fn add<P: AsRef<Path>>(path: P, user: User) -> Result<(), io::Error> {
 ///
 /// # Examples
 /// ```rust
-/// # use user_registry::{command::get, User};
+/// # use user_registry_lib::{command::get, User};
 /// fn get_user() {
 ///     let path = "users.json";
 ///     let user = get(path, 7).unwrap();
@@ -83,7 +83,7 @@ pub fn get<P: AsRef<Path>>(path: P, id: usize) -> Result<User, Error> {
 ///
 /// # Examples
 /// ```rust
-/// # use user_registry::{command::remove, User};
+/// # use user_registry_lib::{command::remove, User};
 /// fn remove_user() {
 ///     let path = "users.json";
 ///     let removed_user = remove(path, 7).unwrap();
@@ -110,7 +110,7 @@ pub fn remove<P: AsRef<Path>>(path: P, id: usize) -> Result<User, Error> {
 ///
 /// # Examples
 /// ```rust
-/// # use user_registry::{command::reset};
+/// # use user_registry_lib::{command::reset};
 /// fn reset_data() {
 ///     let path = "users.json";
 ///     reset(path).unwrap();

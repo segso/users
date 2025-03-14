@@ -21,7 +21,7 @@ use std::{fs, io, path::Path};
 /// # Examples
 /// ```rust
 /// # use std::io::Error;
-/// # use user_registry::{command::read_data, Data};
+/// # use user_registry_lib::{command::read_data, Data};
 /// fn read() -> Data {
 ///     let data = read_data("path/to/data.json").unwrap();
 ///     data
@@ -58,7 +58,7 @@ pub fn read_data<P: AsRef<Path>>(path: P) -> Result<Data, io::Error> {
 ///
 /// # Examples
 /// ```rust
-/// # use user_registry::{command::save_data, Data};
+/// # use user_registry_lib::{command::save_data, Data};
 /// fn save() {
 ///     let data = Data::new();
 ///     save_data("path/to/data.json", &data).unwrap();

@@ -20,7 +20,7 @@ use super::data::read_data;
 ///
 /// # Examples
 /// ```rust
-/// # use user_registry::{User, command::write_user};
+/// # use user_registry_lib::{User, command::write_user};
 /// let user = User {
 ///     first_name: "John".to_string(),
 ///     last_name: "Doe".to_string(),
@@ -53,7 +53,7 @@ pub fn write_user<W: Write>(user: &User, id: usize, writer: &mut W) -> Result<()
 ///
 /// # Examples
 /// ```ignore
-/// # use user_registry::{command::show_data, Data, User};
+/// # use user_registry_lib::{command::show_data, Data, User};
 /// let mut data = Data::new();
 ///
 /// data.add_user(User {
@@ -103,7 +103,7 @@ fn show_data<W: Write>(data: &Data, writer: &mut W) -> Result<(), io::Error> {
 /// # Examples
 /// ```rust
 /// # use std::io::stdout;
-/// # use user_registry::{command::show, Data};
+/// # use user_registry_lib::{command::show, Data};
 /// fn show_from_file() {
 ///     let path = "path/to/data.json";
 ///     let mut writer = stdout();

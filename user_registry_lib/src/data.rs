@@ -13,7 +13,7 @@ use crate::User;
 ///
 /// # Examples
 /// ```rust
-/// # use user_registry::{Data, User};
+/// # use user_registry_lib::{Data, User};
 /// #
 /// let mut data = Data::new();
 /// let user = User {
@@ -89,7 +89,7 @@ impl Data {
     ///
     /// # Examples
     /// ```rust
-    /// # use user_registry::{Data, User};
+    /// # use user_registry_lib::{Data, User};
     /// let mut data = Data::new();
     /// let user = User {
     ///     first_name: "John".to_string(),
@@ -116,7 +116,7 @@ impl Data {
     ///
     /// # Examples
     /// ```rust
-    /// # use user_registry::Data;
+    /// # use user_registry_lib::Data;
     /// let data = Data::new();
     /// let user = data.user(1);
     /// assert_eq!(user, None);
@@ -136,7 +136,7 @@ impl Data {
     ///
     /// # Examples
     /// ```rust
-    /// # use user_registry::Data;
+    /// # use user_registry_lib::Data;
     /// let mut data = Data::new();
     /// let removed_user = data.remove_user(1);
     /// assert_eq!(removed_user, None);
@@ -155,7 +155,7 @@ impl Data {
     ///
     /// # Examples
     /// ```rust
-    /// # use user_registry::Data;
+    /// # use user_registry_lib::Data;
     /// let mut data = Data::new();
     /// let reset_result = data.reset();
     /// assert_eq!(reset_result, false);
@@ -177,7 +177,7 @@ impl Data {
     ///
     /// # Examples
     /// ```rust
-    /// # use user_registry::Data;
+    /// # use user_registry_lib::Data;
     /// let data = Data::new();
     /// let all_users = data.users();
     /// assert!(all_users.is_empty());

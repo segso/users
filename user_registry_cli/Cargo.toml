@@ -1,0 +1,9 @@
+[package]
+name = "user_registry_cli"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4.5.21", features = ["derive", "string"] }
+dirs = "5.0.1"
+user_registry_lib = { path = "../user_registry_lib" }

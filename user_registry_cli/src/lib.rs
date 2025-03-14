@@ -1,17 +1,13 @@
-mod cli;
-pub mod command;
-mod data;
-mod user;
-
-pub use cli::{App, Command};
-pub use data::Data;
-pub use user::User;
-
 use std::io::stdout;
 
+use app::{App, Command};
 use clap::Parser;
+use user_registry_lib::{
+    User,
+    command::{add, get, remove, reset, show, write_user},
+};
 
-use command::{add, get, remove, reset, show, write_user};
+mod app;
 
 pub fn run() -> Result<(), String> {
     let app = App::parse();
