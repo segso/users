@@ -35,6 +35,9 @@ pub enum Command {
 
     /// Display all user data in JSON format.
     Show,
+
+    /// Open the GUI of the application.
+    Gui,
 }
 
 /// Program to register users in a file with their data via GUI or CLI.

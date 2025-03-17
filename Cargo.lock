@@ -310,6 +310,14 @@ version = "0.1.0"
 dependencies = [
  "clap",
  "dirs",
+ "user_registry_gui",
+ "user_registry_lib",
+]
+
+[[package]]
+name = "user_registry_gui"
+version = "0.1.0"
+dependencies = [
  "user_registry_lib",
 ]
 

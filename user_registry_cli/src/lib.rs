@@ -51,6 +51,15 @@ pub fn run() -> Result<(), String> {
         Command::Show => {
             show(data_file, &mut stdout()).map_err(|err| format!("Couldn't write users: {err}"))?;
         }
+        Command::Gui => {
+            #[cfg(not(feature = "gui"))]
+            println!(
+                "The 'gui' feature is disabled. To enable it, recompile the program with the flag `--features gui`."
+            );
+
+            #[cfg(feature = "gui")]
+            user_registry_gui::run();
+        }
     }
 
     Ok(())

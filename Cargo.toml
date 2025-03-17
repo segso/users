@@ -2,5 +2,6 @@
 resolver = "3"
 members = [
     "user_registry_cli",
+    "user_registry_gui",
     "user_registry_lib",
 ]

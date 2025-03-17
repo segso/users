@@ -3,7 +3,15 @@ name = "user_registry_cli"
 version = "0.1.0"
 edition = "2024"
 
+[[bin]]
+name = "cli"
+path = "src/main.rs"
+
+[features]
+gui = ["dep:user_registry_gui"]
+
 [dependencies]
 clap = { version = "4.5.21", features = ["derive", "string"] }
 dirs = "5.0.1"
+user_registry_gui = { path = "../user_registry_gui", optional = true }
 user_registry_lib = { path = "../user_registry_lib" }
