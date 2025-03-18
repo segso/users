@@ -3,6 +3,10 @@ name = "user_registry_gui"
 version = "0.1.0"
 edition = "2024"
 
+[[bin]]
+name = "gui"
+path = "src/main.rs"
+
 [dependencies]
 iced = "0.13.1"
 user_registry_lib = { path = "../user_registry_lib" }
