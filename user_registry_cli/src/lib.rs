@@ -53,12 +53,14 @@ pub fn run() -> Result<(), String> {
         }
         Command::Gui => {
             #[cfg(not(feature = "gui"))]
-            println!(
-                "The 'gui' feature is disabled. To enable it, recompile the program with the flag `--features gui`."
-            );
+            return Err(String::from(
+                "The 'gui' feature is disabled. To enable it, recompile the program with the flag `--features gui`.",
+            ));
 
             #[cfg(feature = "gui")]
-            user_registry_gui::run();
+            if let Err(err) = user_registry_gui::run() {
+                return Err(format!("An error occurred in the GUI: {err}"));
+            }
         }
     }
 
