@@ -1,1 +1,3 @@
-pub fn run() {}
+pub fn run() -> iced::Result {
+    Ok(())
+}
