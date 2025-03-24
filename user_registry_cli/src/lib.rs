@@ -1,4 +1,4 @@
-use std::io::stdout;
+use std::{fs, io::stdout};
 
 use app::{App, Command};
 use clap::Parser;
@@ -14,6 +14,14 @@ pub fn run() -> Result<(), String> {
     let data_file = app.get_data().ok_or(String::from(
         "Couldn't get data file path. Try using --data to specify one.",
     ))?;
+
+    let Some(parent) = data_file.parent() else {
+        return Err(String::from("Couldn't get data file parent."));
+    };
+
+    if let Err(err) = fs::create_dir_all(parent) {
+        return Err(format!("Failed to create data directory: {err}"));
+    }
 
     if data_file.exists() && !data_file.is_file() {
         return Err(String::from(

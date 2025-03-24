@@ -57,7 +57,7 @@ impl App {
         self.data.clone().or_else(|| {
             dirs::data_dir().map(|mut path| {
                 path.push("users_registry");
-                path.push("users.txt");
+                path.push("users.json");
                 path
             })
         })
