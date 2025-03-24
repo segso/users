@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 use serde::{Deserialize, Serialize};
 
@@ -37,7 +37,7 @@ pub struct Data {
 
     /// A map of user IDs to their associated [`User`] details.
     #[serde(rename = "u")]
-    users: HashMap<usize, User>,
+    users: BTreeMap<usize, User>,
 }
 
 impl Data {
