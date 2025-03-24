@@ -8,5 +8,6 @@ name = "gui"
 path = "src/main.rs"
 
 [dependencies]
+dirs = "6.0.0"
 iced = "0.13.1"
 user_registry_lib = { path = "../user_registry_lib" }

@@ -58,7 +58,7 @@ pub fn run() -> Result<(), String> {
             ));
 
             #[cfg(feature = "gui")]
-            if let Err(err) = user_registry_gui::run() {
+            if let Err(err) = user_registry_gui::run(&data_file) {
                 return Err(format!("An error occurred in the GUI: {err}"));
             }
         }
