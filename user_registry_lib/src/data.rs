@@ -1,6 +1,9 @@
-use std::collections::BTreeMap;
+use std::{collections::BTreeMap, fmt};
 
-use serde::{Deserialize, Serialize};
+use serde::{
+    Deserialize, Deserializer, Serialize,
+    de::{self, IgnoredAny, MapAccess, Visitor},
+};
 
 use crate::User;
 
@@ -29,10 +32,10 @@ use crate::User;
 /// ```
 ///
 /// [users]: User
-#[derive(Default, Debug, Serialize, Deserialize)]
+#[derive(Default, Debug, Serialize)]
 pub struct Data {
     /// The next available unique ID to be assigned to a user.
-    #[serde(rename = "i")]
+    #[serde(skip)]
     next_id: usize,
 
     /// A map of user IDs to their associated [`User`] details.
@@ -184,6 +187,53 @@ impl Data {
     /// ```
     pub fn users(&self) -> Vec<(usize, &User)> {
         self.users.iter().map(|(id, user)| (*id, user)).collect()
+    }
+}
+
+impl<'de> Deserialize<'de> for Data {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        struct DataVisitor;
+
+        impl<'de> Visitor<'de> for DataVisitor {
+            type Value = Data;
+
+            fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+                write!(formatter, "a Data struct")
+            }
+
+            fn visit_map<A>(self, mut map: A) -> Result<Self::Value, A::Error>
+            where
+                A: MapAccess<'de>,
+            {
+                let mut users = None;
+
+                while let Some(key) = map.next_key()? {
+                    if let "u" = key {
+                        if users.is_some() {
+                            return Err(de::Error::duplicate_field("u"));
+                        }
+                        users = Some(map.next_value()?);
+                    } else {
+                        let _: IgnoredAny = map.next_value()?;
+                    }
+                }
+
+                let users = users.ok_or_else(|| de::Error::missing_field("u"))?;
+
+                let mut data = Data {
+                    users,
+                    ..Default::default()
+                };
+                data.calculate_next_id();
+
+                Ok(data)
+            }
+        }
+
+        deserializer.deserialize_struct("Data", &["i", "u"], DataVisitor)
     }
 }
 
