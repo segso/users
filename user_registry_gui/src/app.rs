@@ -19,7 +19,7 @@ impl App {
 
     pub fn view(state: &State) -> Element<Message> {
         match state.page {
-            Page::Main => pages::main::view(),
+            Page::Main => pages::main::view(state),
         }
     }
 }

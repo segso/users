@@ -1,2 +1,4 @@
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum Message {}
+pub enum Message {
+    Null,
+}
